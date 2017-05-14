@@ -14,17 +14,20 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtPanjang, txtLebar;
     private Button btnHitung;
     private TextView lblLuas;
+    private TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Hitung Luas Persegi Panjang");
 
+        toolbarTitle = (TextView)findViewById(R.id.main_toolbar_title);
         txtPanjang = (EditText)findViewById(R.id.txtPanjang);
         txtLebar = (EditText)findViewById(R.id.txtLebar);
         btnHitung = (Button)findViewById(R.id.btnHitung);
         lblLuas = (TextView)findViewById(R.id.lblLuas);
+
+        toolbarTitle.setText("Hitung Luas Persegi Panjang");
 
         btnHitung.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     double luas = p * l;
                     DecimalFormat format = new DecimalFormat("#.#");
 
-                    lblLuas.setText("Hasil : " + format.format(luas));
+                    lblLuas.setText(format.format(luas));
                 }catch(NumberFormatException e){
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
